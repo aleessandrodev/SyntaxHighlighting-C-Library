@@ -5,8 +5,8 @@
 #include <unordered_map>
 
 namespace Syntax{
-    std::unordered_map<std::string, const char*> colors;
-    char alphabet[42] = {
+    inline std::unordered_map<std::string, const char*> colors;
+    inline char alphabet[42] = {
         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z',
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'Z'
     };
@@ -15,41 +15,41 @@ namespace Syntax{
 
 namespace Color{
     
-    const char* Reset = "\033[0m";
+    inline const char* Reset = "\033[0m";
 
     //TEXT
-    const char* Black   = "\033[30m";
-    const char* Red     = "\033[31m";
-    const char* Green   = "\033[32m";
-    const char* Yellow  = "\033[33m";
-    const char* Blue    = "\033[34m";
-    const char* Purple = "\033[35m";
-    const char* Cyan    = "\033[36m";
-    const char* White   = "\033[37m";
-    const char* Default = "\033[39m";
+    inline const char* Black   = "\033[30m";
+    inline const char* Red     = "\033[31m";
+    inline const char* Green   = "\033[32m";
+    inline const char* Yellow  = "\033[33m";
+    inline const char* Blue    = "\033[34m";
+    inline const char* Purple = "\033[35m";
+    inline const char* Cyan    = "\033[36m";
+    inline const char* White   = "\033[37m";
+    inline const char* Default = "\033[39m";
 
     //BRIGHT
-    const char* BrightBlack   = "\033[90m";
-    const char* BrightRed     = "\033[91m";
-    const char* BrightGreen   = "\033[92m";
-    const char* BrightYellow  = "\033[93m";
-    const char* BrightBlue    = "\033[94m";
-    const char* BrightPurple = "\033[95m";
-    const char* BrightCyan    = "\033[96m";
-    const char* BrightWhite   = "\033[97m";
+    inline const char* BrightBlack   = "\033[90m";
+    inline const char* BrightRed     = "\033[91m";
+    inline const char* BrightGreen   = "\033[92m";
+    inline const char* BrightYellow  = "\033[93m";
+    inline const char* BrightBlue    = "\033[94m";
+    inline const char* BrightPurple = "\033[95m";
+    inline const char* BrightCyan    = "\033[96m";
+    inline const char* BrightWhite   = "\033[97m";
 }
 
-void add(std::initializer_list<const char*> words, const char* color) {
+inline void add(std::initializer_list<const char*> words, const char* color) {
     for (auto w : words) Syntax::colors[w] = color;
 }
 
-void initColors(){
+inline void initColors(){
 
     add({"(", ")", "[", "]"}, Color::BrightBlue);
 
     add({"{", "}"}, Color::BrightPurple);
 
-    add({"1","2","3","4","5","6","7","8","9","0"}, Color::Green);
+    add({"1","2","3","4","5","6","7","8","9","0"}, Color::BrightGreen);
 
     add({"for", "while", "do", "if", "else", "switch", "case", "default",
          "break", "continue", "return", "goto", "try", "catch", "throw"}, Color::Purple);
@@ -102,7 +102,7 @@ inline std::vector<std::string> split(std::string const line){
 
 }
 
-std::string highlightLine(std::string line){
+inline std::string highlightLine(std::string line){
     std::string coloredLine;
     std::vector<std::string> word = split(line);
     bool contain = false;
