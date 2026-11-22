@@ -81,9 +81,9 @@ inline std::vector<std::string> split(std::string const line){
     std::string word;
     bool find = false;
 
-    for(int i = 0; i < line.size(); i++){
+    for(size_t i = 0; i < line.size(); i++){
         find = false;
-        for(int j = 0; j < 42; j++){
+        for(size_t j = 0; j < 42; j++){
             if(line[i] == Syntax::alphabet[j]){
                 word += line[i];
                 find = true;
@@ -106,7 +106,7 @@ inline std::string highlightLine(std::string line){
     std::string coloredLine;
     std::vector<std::string> word = split(line);
     bool contain = false;
-    for(int i = 0; i < word.size(); i++){
+    for(size_t i = 0; i < word.size(); i++){
         if(Syntax::colors.contains(word[i])) contain = true;
         else contain = false;
 
