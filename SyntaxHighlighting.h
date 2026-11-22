@@ -6,9 +6,9 @@
 
 namespace Syntax{
     inline std::unordered_map<std::string, const char*> colors;
-    inline char alphabet[42] = {
-        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z',
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'Z'
+    inline char alphabet[52] = {
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     };
 }
 
@@ -83,7 +83,7 @@ inline std::vector<std::string> split(std::string const line){
 
     for(size_t i = 0; i < line.size(); i++){
         find = false;
-        for(size_t j = 0; j < 42; j++){
+        for(size_t j = 0; j < 52; j++){
             if(line[i] == Syntax::alphabet[j]){
                 word += line[i];
                 find = true;
@@ -96,7 +96,10 @@ inline std::vector<std::string> split(std::string const line){
         }
         
         
+        
     }
+
+    if(!word.empty()) words.push_back(word);
 
     return words;
 
