@@ -45,11 +45,11 @@ inline void add(std::initializer_list<const char*> words, const char* color) {
 
 inline void initColors(){
 
-    add({"(", ")", "[", "]"}, Color::BrightBlue);
+    add({"(", ")", "[", "]"}, Color::BrightPurple);
 
-    add({"{", "}"}, Color::BrightPurple);
+    add({"{", "}"}, Color::Cyan);
 
-    add({"1","2","3","4","5","6","7","8","9","0"}, Color::BrightGreen);
+    add({"1","2","3","4","5","6","7","8","9","0"}, Color::BrightYellow);
 
     add({"for", "while", "do", "if", "else", "switch", "case", "default",
          "break", "continue", "return", "goto", "try", "catch", "throw"}, Color::Purple);
@@ -57,9 +57,9 @@ inline void initColors(){
     add({"int", "float", "char", "bool", "void", "double", "auto", "size_t",
          "long", "short", "signed", "unsigned", "string", "vector",
          "uint8_t", "uint16_t", "uint32_t", "uint64_t",
-         "int8_t", "int16_t", "int32_t", "int64_t"}, Color::Blue); 
+         "int8_t", "int16_t", "int32_t", "int64_t"}, Color::BrightBlue); 
 
-    add({"true", "false", "nullptr", "NULL"}, Color::Yellow);
+    add({"true", "false", "nullptr", "NULL"}, Color::Red);
 
     add({"const", "constexpr", "static", "inline", "extern", "volatile",
          "mutable", "virtual", "override", "final", "explicit"}, Color::Cyan);
@@ -110,7 +110,7 @@ inline std::string highlightLine(std::string line){
     std::vector<std::string> word = split(line);
     bool contain = false;
     for(size_t i = 0; i < word.size(); i++){
-        if(Syntax::colors.contains(word[i])) contain = true;
+        if(Syntax::colors.find(word[i]) != Syntax::colors.end()) contain = true;
         else contain = false;
 
         if(contain) coloredLine += Syntax::colors.at(word[i]);
