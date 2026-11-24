@@ -37,6 +37,8 @@ namespace Color{
     inline const char* BrightPurple = "\033[95m";
     inline const char* BrightCyan    = "\033[96m";
     inline const char* BrightWhite   = "\033[97m";
+
+    inline const char* stringColor = "\033[33m";
 }
 
 inline void add(std::initializer_list<const char*> words, const char* color) {
@@ -44,6 +46,7 @@ inline void add(std::initializer_list<const char*> words, const char* color) {
 }
 
 inline void initColors(){
+
 
     add({"(", ")", "[", "]"}, Color::BrightPurple);
 
@@ -81,6 +84,8 @@ inline std::vector<std::string> split(std::string const line){
     std::string word;
     bool find = false;
 
+    
+
     for(size_t i = 0; i < line.size(); i++){
         find = false;
         for(size_t j = 0; j < 52; j++){
@@ -105,9 +110,42 @@ inline std::vector<std::string> split(std::string const line){
 
 }
 
+inline std::string checkString(std::vector<std::string> line){
+
+    std::string coloredStrings;
+    
+    bool string = false;
+
+    for(size_t i = 0; i < line.size(); i++){
+        bool quote = (line[i] == "'" || line[i] == "\"");
+
+        if(quote && !string){
+            
+            string = true;
+            coloredStrings += Color::stringColor;
+            coloredStrings += line[i];
+
+        }else if(quote && string){
+            string = false;
+            coloredStrings += line[i];
+            coloredStrings += Color::Reset;
+        
+        }else{
+            coloredStrings += line[i];
+        }
+    }
+
+    return coloredStrings;
+
+
+}
+
 inline std::string highlightLine(std::string line){
     std::string coloredLine;
     std::vector<std::string> word = split(line);
+
+    
+
     bool contain = false;
     for(size_t i = 0; i < word.size(); i++){
         if(Syntax::colors.find(word[i]) != Syntax::colors.end()) contain = true;
@@ -120,7 +158,7 @@ inline std::string highlightLine(std::string line){
         if(contain) coloredLine += "\033[0m";
         
     }
-
+    coloredLine = checkString(split(coloredLine));
     return coloredLine;
 
 
